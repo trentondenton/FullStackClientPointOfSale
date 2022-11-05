@@ -1,0 +1,51 @@
+.paper {
+  background-color: $gray-900;
+  border-radius: 2px;
+  padding: 20px 30px;
+  position: relative;
+  max-width: 60vw;
+  max-height: 90vh;
+  color: white;
+}
+
+.paper-sign-up {
+  background-color: $gray-900;
+  border-radius: 2px;
+  padding: 20px 30px;
+  height: 90vh;
+  width: 70vw;
+  color: white;
+  margin-top: 2vh;
+}
+.paper-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 100vw;
+}
+
+.button-container {
+  h6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vw;
+    width: 100vw;
+    Button {
+      margin: 0 6px;
+    }
+  }
+  .primary-link {
+    color: $success;
+  }
+}
+
+.myflex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
