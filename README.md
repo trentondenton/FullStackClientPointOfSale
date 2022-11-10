@@ -9,6 +9,18 @@
 
 ### TODO
 
-- [ ] Navigation Component
-- [ ] Login Component
-- [ ] 
+- [x] Navigation
+- [x] Home
+- [x] Register Company
+- [x] Company & Employee Login
+- [x] Company Dashboard
+- [x] Employee Dashboard
+- [ ] Create Employee
+- [ ] Delete Employee
+- [ ] Edit Employee
+- [x] Get Products
+- [ ] Create Product
+- [ ] Delete Product
+- [ ] Cart
+- [ ] Checkout
+- [ ] Image Uploader

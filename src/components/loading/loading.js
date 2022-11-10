@@ -4,22 +4,22 @@ export default function Loading() {
   return (
     <React.Fragment>
       <div className="loading-master-container">
-        <div class="loading-container">
-          <div class="coast">
-            <div class="wave-rel-wrap">
-              <div class="wave"></div>
+        <div className="loading-container">
+          <div className="coast">
+            <div className="wave-rel-wrap">
+              <div className="wave"></div>
             </div>
           </div>
-          <div class="coast delay">
-            <div class="wave-rel-wrap">
-              <div class="wave delay"></div>
+          <div className="coast delay">
+            <div className="wave-rel-wrap">
+              <div className="wave delay"></div>
             </div>
           </div>
-          <div class="loading-text loading-text-K">K</div>
-          <div class="loading-text loading-text-a">a</div>
-          <div class="loading-text loading-text-l">l</div>
-          <div class="loading-text loading-text-d">d</div>
-          <div class="loading-text loading-text-r">r</div>
+          <div className="loading-text loading-text-K">K</div>
+          <div className="loading-text loading-text-a">a</div>
+          <div className="loading-text loading-text-l">l</div>
+          <div className="loading-text loading-text-d">d</div>
+          <div className="loading-text loading-text-r">r</div>
         </div>
       </div>
       <div className="loading-pos-container">
