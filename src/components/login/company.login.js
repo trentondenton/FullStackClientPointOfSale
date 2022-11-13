@@ -33,7 +33,6 @@ export default class CompanyLogin extends Component {
 
     axios.post(`http://localhost:5000/api/v1/auth/company/login`, login)
       .then(res => {
-        console.log(res.data);
         localStorage.setItem('token', res.data.token);
         this.setState({ successfulLogin: true });
       }
