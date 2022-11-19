@@ -33,7 +33,7 @@ export default class CompanyLogin extends Component {
 
     axios.post(`http://localhost:5000/api/v1/auth/company/login`, login)
       .then(res => {
-        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('token', res.data.data.token);
         this.setState({ successfulLogin: true });
       }
       )
@@ -67,7 +67,7 @@ export default class CompanyLogin extends Component {
             <Button variant="danger" type="submit">Login</Button>
           </Container>
         </Form>
-        {this.state.successfulLogin && <Navigate to="/company/dashboard" />}
+        {this.state.successfulLogin && <Navigate to="/dashboard" />}
       </React.Fragment>
     )
   }

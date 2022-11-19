@@ -1,27 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 import { Container, Navbar as NavBar, Nav } from 'react-bootstrap';
 import {
   BsHouseFill,
   BsPersonBadgeFill,
   BsDoorOpenFill,
   BsPersonCircle,
-  BsFillGridFill
+  BsShopWindow,
+  BsGearFill
 } from 'react-icons/bs';
+
+import { useUser, useUserLogout } from '../../utils/UserProvider';
+import { useCompany, useCompanyLogout } from '../../utils/CompanyProvider';
 function Navbar() {
   const [page, setPage] = useState('/');
+  const { setUser } = useUser();
+  const { company, setCompany } = useCompany();
+  const logoutUser = useUserLogout();
+  const logoutCompany = useCompanyLogout();
+  const navigate = useNavigate();
 
   function handleLogout() {
+    company ? logoutCompany() : logoutUser();
     localStorage.removeItem('token');
+    navigate('/');
   }
 
   function isLoggedIn() {
-    return localStorage.getItem('token');
+    return localStorage.getItem('token') ? true : false;
   }
 
+
+
   useEffect(() => {
-    isLoggedIn()
-  }, []);
+    function checkWhoLoggedIn() {
+      let decoded_token = jwt_decode(localStorage.getItem('token')).sub;
+      decoded_token.isCompany ? setCompany(decoded_token) : setUser(decoded_token);
+    }
+
+    isLoggedIn() ?
+      checkWhoLoggedIn()
+      :
+      setUser({});
+  }, [setCompany, setUser]);
 
   return (
     <React.Fragment>
@@ -37,7 +59,21 @@ function Navbar() {
             <Nav.Item>
               <Nav.Link as={Link} eventKey="/" to="/"><BsHouseFill /></Nav.Link>
             </Nav.Item>
-
+            {company !== null ?
+              <React.Fragment>
+                <Nav.Item>
+                  <Nav.Link as={Link}
+                    eventKey="/settings"
+                    to="/settings"
+                    aria-label="Settings"
+                  >
+                    <BsGearFill />
+                  </Nav.Link>
+                </Nav.Item>
+              </React.Fragment>
+              :
+              null
+            }
             {isLoggedIn() ?
               <React.Fragment>
                 <Nav.Item>
@@ -55,7 +91,7 @@ function Navbar() {
                     to="/pos"
                     aria-label='Point of Sale System'
                   >
-                    <BsFillGridFill />
+                    <BsShopWindow />
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>

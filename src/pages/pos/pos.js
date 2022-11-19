@@ -41,7 +41,7 @@ export default class POS extends Component {
   }
 
   getProducts() {
-    const token = JSON.parse(localStorage.getItem('token'));
+    const token = localStorage.getItem('token');
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`
@@ -61,11 +61,10 @@ export default class POS extends Component {
   render() {
     return (
       <Container>
-
         <Row className="myflex mt-5">
           <h1>Products</h1>
         </Row>
-        <Row className="mygrid">
+        <Row className="mygrid mt-5">
           {this.state.products.map(product => {
             return (
               <POSItem key={product.productID} product={product} addToCart={this.addToCart} removeFromCart={this.removeFromCart} />)

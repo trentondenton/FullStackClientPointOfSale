@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
 
 import EmployeeDashboardComponent from '../../components/dashboards/employee.dashboard';
+import CompanyDashboardComponent from '../../components/dashboards/company.dashboard';
 
 export default class Dashboard extends Component {
   constructor() {
@@ -20,13 +21,22 @@ export default class Dashboard extends Component {
 
   checkUser() {
     let decoded_token = jwt_decode(localStorage.getItem('token'));
-    this.setState({
-      employee: decoded_token.sub,
-    })
+    decoded_token.sub.isCompany ?
+
+      this.setState({
+        company: decoded_token.sub
+      })
+      :
+      this.setState({
+        employee: decoded_token.sub,
+      })
   }
   render() {
     return (
-      <EmployeeDashboardComponent props={this.state.employee} />
+      this.state.company !== {} ?
+        <CompanyDashboardComponent company={this.state.company} />
+        :
+        <EmployeeDashboardComponent employee={this.state.employee} />
     )
   }
 }
