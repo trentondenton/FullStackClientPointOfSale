@@ -10,20 +10,32 @@
 - [JWT](https://jwt.io/)
 - [SCSS](https://sass-lang.com/)
 
-### TODO
+### Todo
+
+- [ ] Image Uploaders
+- [ ] Cart
+- CRUD Orders
+  - [ ] Create
+  - [ ] Read
+  - [ ] Update
+  - [ ] Delete
+
+### Completed
 
 - [✅] Navigation
 - [✅] Home
 - [✅] Register Company
-- [✅] Company & Employee Login
+- [✅] Company Login
 - [✅] Company Dashboard
+- [✅] Employee Login
 - [✅] Employee Dashboard
-- [ ] Create Employee
-- [✅] Delete Employee
-- [✅] Edit Employee
-- [✅] Get Products
-- [ ] Create Product
-- [✅] Delete Product
-- [ ] Cart
-- [ ] Checkout
-- [ ] Image Uploader
+- CRUD Products
+  - [✅] Create
+  - [✅] Read
+  - [✅] Update
+  - [✅] Delete
+- CRUD Employee
+  - [✅] Create
+  - [✅] Read
+  - [✅] Update
+  - [✅] Delete

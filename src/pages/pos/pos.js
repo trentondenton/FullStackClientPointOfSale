@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Button, Row } from 'react-bootstrap';
 import { BsCartFill } from 'react-icons/bs';
 
+import Loading from '../../components/loading/loading';
 import POSItem from '../../components/pos/pos.item';
 import Cart from '../../components/pos/cart';
 export default class POS extends Component {
@@ -11,7 +12,8 @@ export default class POS extends Component {
     this.state = {
       products: [],
       cart: [],
-      cartHidden: true
+      cartHidden: true,
+      isLoading: true,
     }
 
     this.getProducts = this.getProducts.bind(this);
@@ -54,31 +56,37 @@ export default class POS extends Component {
         })
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       })
+      .finally(() => {
+        this.setState({
+          isLoading: false
+        })
+      }
+      )
   }
 
   render() {
     return (
-      <React.Fragment>
-        <Row className="myflex mt-5">
-          <h1>Products</h1>
-        </Row>
-        <div className="mygrid mt-5">
-          {this.state.products.map(product => {
-            return (
-              <POSItem key={product.productID} product={product} addToCart={this.addToCart} removeFromCart={this.removeFromCart} />)
-          })}
-        </div>
-        {this.state.cartHidden ?
-          <Row className="fixed-bottom">
-            <Button variant="dark" onClick={() => this.setState({ cartHidden: !this.state.cartHidden })}>Checkout <BsCartFill /></Button>
+      this.state.isLoading ? <Loading /> :
+        <React.Fragment>
+          <Row className="myflex mt-5">
+            <h1>Products</h1>
           </Row>
-          :
-          <Cart cart={this.state.cart} />}
+          <div className="mygrid mt-5">
+            {this.state.products.map(product => {
+              return (
+                <POSItem key={product.productID} product={product} addToCart={this.addToCart} removeFromCart={this.removeFromCart} />)
+            })}
+          </div>
+          {this.state.cartHidden ?
+            <Row className="fixed-bottom">
+              <Button variant="dark" onClick={() => this.setState({ cartHidden: !this.state.cartHidden })}>Checkout <BsCartFill /></Button>
+            </Row>
+            :
+            <Cart cart={this.state.cart} />}
 
-      </React.Fragment>
-
+        </React.Fragment>
     )
   }
 }

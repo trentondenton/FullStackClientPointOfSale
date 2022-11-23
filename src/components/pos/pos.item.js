@@ -6,7 +6,7 @@ function POSItem(props) {
   const { prodImage, prodName, prodDescription, prodPrice } = props.product;
   return (
     <Card className="paper">
-      <Card.Img variant="top" src={prodImage} />
+      {prodImage ? <Card.Img variant="top" src={prodImage} /> : <Card.Img variant="top" src="https://via.placeholder.com/400/000000/FFFFFF/?text=KaldrPOS" />}
       <Card.Body>
         <Card.Title>{prodName}</Card.Title>
         <Card.Text>
