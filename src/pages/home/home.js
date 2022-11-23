@@ -51,7 +51,7 @@ function Home() {
           <Row className="myflex">
             <h3>Ready to upgrade your Point of Sale System?</h3>
             <div className="button-container">
-              <Button as={Link} to="/signup" variant="danger">Sign Up!</Button>
+              <Button as={Link} to="/signup" variant="primary">Sign Up!</Button>
             </div>
           </Row>
         </div>

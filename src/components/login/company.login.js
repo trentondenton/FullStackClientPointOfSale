@@ -64,7 +64,7 @@ export default class CompanyLogin extends Component {
           </Form.Group>
           <br />
           <Container>
-            <Button variant="danger" type="submit">Login</Button>
+            <Button variant="primary" type="submit">Login</Button>
           </Container>
         </Form>
         {this.state.successfulLogin && <Navigate to="/dashboard" />}

@@ -11,7 +11,6 @@ import Login from './pages/login/login';
 import SignUp from './pages/signup/signup';
 import Dashboard from './pages/dashboard/dashboard';
 import POS from './pages/pos/pos';
-import PosItem from './pages/pos/positem';
 import Settings from './pages/settings/settings';
 
 
@@ -28,9 +27,7 @@ function App() {
               <Route path="/signup" element={<SignUp />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="settings" element={<Settings />} />
-              <Route path="/pos" element={<POS />}>
-                <Route path=":productID" element={<PosItem />} />
-              </Route>
+              <Route path="/pos" element={<POS />} />
             </Route>
           </Routes>
         </ItemProvider>

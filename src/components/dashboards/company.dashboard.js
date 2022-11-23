@@ -30,7 +30,7 @@ export default class CompanyDashboardComponent extends Component {
             <p>Address: <b>{compAddress}</b></p>
             <p>Email: <b>{compEmail}</b></p>
             <p>Phone: <b>{compPhone}</b></p>
-            <p> <Button variant="danger"><BsFillPencilFill /></Button></p>
+            <p> <Button variant="primary"><BsFillPencilFill /></Button></p>
           </Col>
           <Col className="info-container-header">
             <h3>Company Aesthetic</h3>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Container, Button, Row } from 'react-bootstrap';
+import { Button, Row } from 'react-bootstrap';
 import { BsCartFill } from 'react-icons/bs';
 
 import POSItem from '../../components/pos/pos.item';
@@ -60,23 +60,24 @@ export default class POS extends Component {
 
   render() {
     return (
-      <Container>
+      <React.Fragment>
         <Row className="myflex mt-5">
           <h1>Products</h1>
         </Row>
-        <Row className="mygrid mt-5">
+        <div className="mygrid mt-5">
           {this.state.products.map(product => {
             return (
               <POSItem key={product.productID} product={product} addToCart={this.addToCart} removeFromCart={this.removeFromCart} />)
           })}
-        </Row>
-        {this.state.cartHidden ? <Row className="fixed-bottom">
-          <Button variant="dark" onClick={() => this.setState({ cartHidden: !this.state.cartHidden })}>Checkout <BsCartFill /></Button>
-        </Row>
+        </div>
+        {this.state.cartHidden ?
+          <Row className="fixed-bottom">
+            <Button variant="dark" onClick={() => this.setState({ cartHidden: !this.state.cartHidden })}>Checkout <BsCartFill /></Button>
+          </Row>
           :
           <Cart cart={this.state.cart} />}
 
-      </Container>
+      </React.Fragment>
 
     )
   }

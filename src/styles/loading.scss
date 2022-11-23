@@ -18,7 +18,6 @@ $waveDur: 2100ms;
     position: absolute;
     width: 420px;
     height: 240px;
-    font-family: 'Muli', Helvetica, sans-serif;
     border-radius: 7px;
 
     .loading-text {
@@ -87,7 +86,12 @@ $waveDur: 2100ms;
   width: 6.2rem;
   height: 2.2rem;
   border-radius: 1.1rem;
-  background: radial-gradient(ellipse at center, $red 0%, $red 73%, $red 100%);
+  background: radial-gradient(
+    ellipse at center,
+    $blue 0%,
+    $blue 73%,
+    $blue 100%
+  );
   display: inline-block;
   animation: wave $waveDur linear infinite;
   will-change: width;
@@ -95,7 +99,7 @@ $waveDur: 2100ms;
 }
 
 .delay {
-  animation-delay: $waveDur / 2;
+  animation-delay: calc($waveDur / 2);
 }
 
 @keyframes text {

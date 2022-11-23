@@ -48,7 +48,7 @@ export default class EmployeeDashboardComponent extends Component {
             <p>Start Date: <b>{empStartDate}</b></p>
           </Col>
         </Row>
-        <p> <Button variant="danger"><BsFillPencilFill /></Button></p>
+        <p> <Button variant="primary"><BsFillPencilFill /></Button></p>
       </Container>
     )
   }

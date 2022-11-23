@@ -3,16 +3,17 @@ import { Card, Button } from 'react-bootstrap';
 import { BsCartPlusFill, BsCartDashFill, BsFillPencilFill } from 'react-icons/bs';
 
 function POSItem(props) {
+  const { prodImage, prodName, prodDescription, prodPrice } = props.product;
   return (
-    <Card style={{ width: '18rem' }} className="paper">
-      <Card.Img variant="top" src={props.product.prodImage} />
+    <Card className="paper">
+      <Card.Img variant="top" src={prodImage} />
       <Card.Body>
-        <Card.Title>{props.product.prodName}</Card.Title>
+        <Card.Title>{prodName}</Card.Title>
         <Card.Text>
-          {props.product.prodDescription}
+          {prodDescription}
         </Card.Text>
         <Card.Text>
-          {props.product.prodPrice}
+          {prodPrice}
         </Card.Text>
         <Button variant="danger"><BsCartDashFill /></Button>
         <Button variant="warning"><BsFillPencilFill /></Button>
