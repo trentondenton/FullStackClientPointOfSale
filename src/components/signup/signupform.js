@@ -44,11 +44,11 @@ export default class SignUpForm extends Component {
       compLogo: this.state.compLogo,
       compUsername: this.state.compUsername,
     }
-    axios.post('http://localhost:5000/api/v1/company', newCompany)
+    axios.post('https://kaldr-pos-backend.herokuapp.com/api/v1/company', newCompany)
       .then(res =>
         this.handleToken(res.data.token)
       )
-      .catch(err => console.log(err))
+      .catch(err => console.error(err))
 
   }
 

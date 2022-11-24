@@ -43,13 +43,13 @@ export default class POS extends Component {
   }
 
   getProducts() {
-    const token = localStorage.getItem('token');
+    const token = JSON.parse(localStorage.getItem('token'));
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`
       }
     }
-    axios.get('http://localhost:5000/api/v1/products', config)
+    axios.get('https://kaldr-pos-backend.herokuapp.com/api/v1/products', config)
       .then(res => {
         this.setState({
           products: res.data.data.products

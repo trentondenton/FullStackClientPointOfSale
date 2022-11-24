@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-const UserContext = React.createContext();
+export const UserContext = React.createContext();
 const UserUpdateContext = React.createContext();
 const UserLogoutContext = React.createContext();
 

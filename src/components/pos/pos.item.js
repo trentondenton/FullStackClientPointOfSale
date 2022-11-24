@@ -1,12 +1,12 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Image, Button } from 'react-bootstrap';
 import { BsCartPlusFill, BsCartDashFill, BsFillPencilFill } from 'react-icons/bs';
 
 function POSItem(props) {
   const { prodImage, prodName, prodDescription, prodPrice } = props.product;
   return (
     <Card className="paper">
-      {prodImage ? <Card.Img variant="top" src={prodImage} /> : <Card.Img variant="top" src="https://via.placeholder.com/400/000000/FFFFFF/?text=KaldrPOS" />}
+      {prodImage ? <Image styles={{ width: '100px', height: '100px' }} variant="top" src={prodImage} /> : null}
       <Card.Body>
         <Card.Title>{prodName}</Card.Title>
         <Card.Text>

@@ -19,7 +19,6 @@ export default class AddProductModal extends Component {
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state);
   }
 
   onSubmit(e) {
@@ -38,9 +37,8 @@ export default class AddProductModal extends Component {
     };
 
     axios
-      .post('http://localhost:5000/api/v1/product', data, config)
+      .post('https://kaldr-pos-backend.herokuapp.com/api/v1/product', data, config)
       .then((res) => {
-        console.log(res);
         this.setState({
           prodName: '',
           prodDescription: '',

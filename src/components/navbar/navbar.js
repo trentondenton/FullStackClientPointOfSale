@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
 import { Container, Navbar as NavBar, Nav } from 'react-bootstrap';
 import {
   BsHouseFill,
@@ -15,35 +14,27 @@ import { useUser, useUserLogout } from '../../utils/UserProvider';
 import { useCompany, useCompanyLogout } from '../../utils/CompanyProvider';
 function Navbar() {
   const [page, setPage] = useState('/');
-  const { setUser } = useUser();
-  const { company, setCompany } = useCompany();
+  const { user } = useUser();
+  const { company } = useCompany();
   const logoutUser = useUserLogout();
   const logoutCompany = useCompanyLogout();
   const navigate = useNavigate();
 
   function handleLogout() {
-    company ? logoutCompany() : logoutUser();
+    company !== null ? logoutCompany() : logoutUser();
     localStorage.removeItem('token');
     navigate('/');
   }
 
-  function isLoggedIn() {
-    return localStorage.getItem('token') ? true : false;
-  }
 
 
 
   useEffect(() => {
-    function checkWhoLoggedIn() {
-      let decoded_token = jwt_decode(localStorage.getItem('token')).sub;
-      decoded_token.isCompany ? setCompany(decoded_token) : setUser(decoded_token);
-    }
-
-    isLoggedIn() ?
-      checkWhoLoggedIn()
-      :
-      setUser({});
-  }, [setCompany, setUser]);
+    const loggedIn = () => {
+      return user || company;
+    };
+    loggedIn();
+  }, [user, company]);
 
   return (
     <React.Fragment>
@@ -74,7 +65,7 @@ function Navbar() {
               :
               null
             }
-            {isLoggedIn() ?
+            {user !== null || company !== null ?
               <React.Fragment>
                 <Nav.Item>
                   <Nav.Link as={Link}
@@ -117,7 +108,6 @@ function Navbar() {
                 </Nav.Link>
               </Nav.Item>
             }
-
           </Nav>
         </Container>
       </NavBar>

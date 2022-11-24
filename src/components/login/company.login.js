@@ -4,7 +4,10 @@ import axios from 'axios';
 import { Form, Button, Container } from 'react-bootstrap';
 import { BsPersonFill } from 'react-icons/bs';
 
+import { CompanyContext } from '../../utils/CompanyProvider';
+
 export default class CompanyLogin extends Component {
+  static contextType = CompanyContext;
   constructor() {
     super();
     this.state = {
@@ -31,13 +34,17 @@ export default class CompanyLogin extends Component {
       compPassword: this.state.compPassword
     }
 
-    axios.post(`http://localhost:5000/api/v1/auth/company/login`, login)
+    axios.post(`https://kaldr-pos-backend.herokuapp.com/api/v1/auth/company/login`, login)
       .then(res => {
-        localStorage.setItem('token', res.data.data.token);
-        this.setState({ successfulLogin: true });
-      }
-      )
-      .catch(err => console.log(err))
+        localStorage.setItem('token', JSON.stringify(res.data.data.token));
+        const { setCompany } = this.context;
+        setCompany(res.data.data.user);
+      })
+      .catch(err => console.error(err))
+      .finally(() => {
+        const token = localStorage.getItem('token');
+        token && this.setState({ successfulLogin: true });
+      })
   }
   render() {
     return (

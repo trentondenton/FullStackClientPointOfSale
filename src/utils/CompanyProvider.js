@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-const CompanyContext = React.createContext();
+export const CompanyContext = React.createContext();
 const CompanyUpdateContext = React.createContext();
 const CompanyLogoutContext = React.createContext();
 

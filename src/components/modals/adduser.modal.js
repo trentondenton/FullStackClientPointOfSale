@@ -31,7 +31,6 @@ export default class AddUserModal extends Component {
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state.titleID);
   }
 
   getTitles() {
@@ -39,7 +38,7 @@ export default class AddUserModal extends Component {
     const config = {
       headers: { 'Authorization': `Bearer ${token}` }
     };
-    axios.get('http://localhost:5000/api/v1/title', config)
+    axios.get('https://kaldr-pos-backend.herokuapp.com/api/v1/title', config)
       .then(res => {
         this.setState({ titles: res.data.data.titles });
       })
@@ -73,9 +72,8 @@ export default class AddUserModal extends Component {
       titleID: this.state.titleID
     }
     axios
-      .post('http://localhost:5000/api/v1/employee', data, config)
+      .post('https://kaldr-pos-backend.herokuapp.com/api/v1/employee', data, config)
       .then((res) => {
-        console.log(res);
         this.setState({
           empFirstName: '',
           empLastName: '',
@@ -131,7 +129,7 @@ export default class AddUserModal extends Component {
             </Form.Group>
             <Form.Group controlId="formBasicTitle">
               <Form.Label>Title</Form.Label>
-              <Form.Select as="select" onChange={this.onChange} name="titleID" onClick={(event) => { console.log(event.target.value) }}>
+              <Form.Select as="select" onChange={this.onChange} name="titleID">
                 <option value={0}>Select Title</option>
                 {this.state.titles?.map(title => (
                   <Form.Control as="option" key={title.titleID} value={title.titleID}>{title.title}</Form.Control>

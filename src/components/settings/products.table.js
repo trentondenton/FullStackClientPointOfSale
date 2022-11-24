@@ -16,8 +16,6 @@ function ProductTable(props) {
       ...editedProduct,
       [e.target.name]: e.target.value
     });
-
-    console.log(editedProduct);
   }
 
   const handleEditProductSubmit = (e) => {

@@ -16,6 +16,7 @@ function UserTable(props) {
     setEditedEmployee({
       ...editedEmployee,
       [e.target.name]: e.target.value
+
     });
   }
 
@@ -28,7 +29,8 @@ function UserTable(props) {
   return (
     <tr key={employee.empID}>
       <td>{employee.empPicture ?
-        <Image fluid roundedCircle styles={{ height: '40px', width: '40px' }} src={employee.empPicture} alt="Employee" /> :
+        <Image fluid roundedCircle styles={{ height: '40px', width: '40px' }} src={employee.empPicture} alt="Employee" />
+        :
         <Image fluid roundedCircle src="https://via.placeholder.com/40" alt="Employee" />
       }</td>
 

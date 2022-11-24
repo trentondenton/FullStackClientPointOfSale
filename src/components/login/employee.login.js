@@ -4,13 +4,16 @@ import axios from 'axios';
 import { Form, Button, Container } from 'react-bootstrap';
 import { BsPersonFill } from 'react-icons/bs';
 
+import { UserContext } from '../../utils/UserProvider';
+
 export default class EmployeeLogin extends Component {
+  static contextType = UserContext;
   constructor() {
     super();
     this.state = {
       successfulLogin: false,
       empUsername: '',
-      empPassword: ''
+      empPassword: '',
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -32,13 +35,17 @@ export default class EmployeeLogin extends Component {
     }
 
     axios
-      .post('http://localhost:5000/api/v1/auth/employee/login', login)
+      .post('https://kaldr-pos-backend.herokuapp.com/api/v1/auth/employee/login', login)
       .then(res => {
-        console.log(res.data);
         localStorage.setItem('token', JSON.stringify(res.data.data.token));
-        this.setState({ successfulLogin: true });
+        const { setUser } = this.context;
+        setUser(res.data.data.user);
       })
-      .catch(err => console.log(err))
+      .catch(err => console.error(err))
+      .finally(() => {
+        const token = localStorage.getItem('token');
+        token && this.setState({ successfulLogin: true });
+      })
   }
   render() {
     return (

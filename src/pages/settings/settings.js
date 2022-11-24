@@ -40,13 +40,13 @@ export default class Settings extends Component {
     this.setState({ addUserHide: !this.state.addUserHide });
   };
   getEmployees() {
-    const token = localStorage.getItem('token');
+    const token = JSON.parse(localStorage.getItem('token'));
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`
       }
     }
-    axios.get('http://localhost:5000/api/v1/employees', config)
+    axios.get('https://kaldr-pos-backend.herokuapp.com/api/v1/employees', config)
       .then(res => {
         this.setState({ employees: res.data.data.employees });
       })
@@ -59,7 +59,7 @@ export default class Settings extends Component {
   }
 
   editEmployeeSubmit(editedEmployee) {
-    const token = localStorage.getItem('token');
+    const token = JSON.parse(localStorage.getItem('token'));
     const config = {
       headers: { 'Authorization': `Bearer ${token}` }
     }
@@ -69,10 +69,12 @@ export default class Settings extends Component {
       empUsername: editedEmployee.empUsername,
       empDOB: editedEmployee.empDOB,
       empPhone: editedEmployee.empPhone,
+      empHourly: editedEmployee.empHourly,
+      empSalary: editedEmployee.empSalary,
+      titleID: editedEmployee.titleID,
     }
-    axios.put(`http://localhost:5000/api/v1/employee/${editedEmployee.empID}`, employee, config)
+    axios.put(`https://kaldr-pos-backend.herokuapp.com/api/v1/employee/${editedEmployee.empID}`, employee, config)
       .then(res => {
-        console.log(res);
         this.getEmployees();
       })
       .catch(err => {
@@ -81,13 +83,12 @@ export default class Settings extends Component {
   }
 
   deleteEmployee = (id) => {
-    const token = localStorage.getItem('token');
+    const token = JSON.parse(localStorage.getItem('token'));
     const config = {
       headers: { 'Authorization': `Bearer ${token}` }
     }
-    axios.delete(`http://localhost:5000/api/v1/employee/${id}`, config)
+    axios.delete(`https://kaldr-pos-backend.herokuapp.com/api/v1/employee/${id}`, config)
       .then(res => {
-        console.log(res);
         this.getEmployees();
       })
       .catch(err => {
@@ -96,13 +97,12 @@ export default class Settings extends Component {
   }
 
   deleteProduct = (id) => {
-    const token = localStorage.getItem('token');
+    const token = JSON.parse(localStorage.getItem('token'));
     const config = {
       headers: { 'Authorization': `Bearer ${token}` }
     }
-    axios.delete(`http://localhost:5000/api/v1/products/${id}`, config)
+    axios.delete(`https://kaldr-pos-backend.herokuapp.com/api/v1/products/${id}`, config)
       .then(res => {
-        console.log(res);
         this.getProducts();
       })
       .catch(err => {
@@ -111,20 +111,20 @@ export default class Settings extends Component {
   }
 
   getProducts() {
-    const token = localStorage.getItem('token');
+    const token = JSON.parse(localStorage.getItem('token'));
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`
       }
     }
-    axios.get('http://localhost:5000/api/v1/products', config)
+    axios.get('https://kaldr-pos-backend.herokuapp.com/api/v1/products', config)
       .then(res => {
         this.setState({
           products: res.data.data.products
         })
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       })
       .finally(() => {
         this.setState({ isLoading: { products: false } });
@@ -132,7 +132,7 @@ export default class Settings extends Component {
   }
 
   editProductSubmit = (product) => {
-    const token = localStorage.getItem('token');
+    const token = JSON.parse(localStorage.getItem('token'));
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`
@@ -147,7 +147,7 @@ export default class Settings extends Component {
       prodImage: product.prodImage
 
     }
-    axios.put(`http://localhost:5000/api/v1/products/${product.productID}`, editedProduct, config)
+    axios.put(`https://kaldr-pos-backend.herokuapp.com/api/v1/products/${product.productID}`, editedProduct, config)
       .then(res => {
         this.getProducts();
       })
@@ -169,7 +169,7 @@ export default class Settings extends Component {
             <Accordion.Item eventKey="0" className="vw-100">
               <Accordion.Header>Employees</Accordion.Header>
               <Accordion.Body className="vw-100 p-0 m-0">
-                <Row fluid className="add-emp-prod-container">
+                <Row className="add-emp-prod-container">
                   <Button variant="primary" className="m-2" onClick={this.hideUserModal}><BsPlusLg /> &nbsp; Add Employee</Button>
                 </Row>
                 <Table variant="dark" striped bordered hover className="vw-100 p-0 m-0">
@@ -210,7 +210,7 @@ export default class Settings extends Component {
             <Accordion.Item eventKey="0">
               <Accordion.Header>Products</Accordion.Header>
               <Accordion.Body className="vw-100 p-0 m-0">
-                <Row fluid className="add-emp-prod-container">
+                <Row className="add-emp-prod-container">
                   <Button variant="primary" className="m-2" onClick={this.hideProductModal}><BsPlusLg /> &nbsp; Add Product</Button>
                 </Row>
                 <Table variant="dark" striped bordered hover className="vw-100 p-0 m-0">
