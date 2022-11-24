@@ -6,7 +6,7 @@
 
 ### Hosted Client
 
-[https://kaldr-pos-client.herokuapp.com/](https://kaldr-pos-client.herokuapp.com/)
+[https://kaldr-pos-frontend.netlify.app/](https://kaldr-pos-frontend.netlify.app/)
 
 ### Hosted Server
 
@@ -61,20 +61,20 @@
 
 ### Completed
 
-- [✅] Navigation
-- [✅] Home
-- [✅] Register Company
-- [✅] Company Login
-- [✅] Company Dashboard
-- [✅] Employee Login
-- [✅] Employee Dashboard
+- ✅ Navigation
+- ✅ Home
+- ✅ Register Company
+- ✅ Company Login
+- ✅ Company Dashboard
+- ✅ Employee Login
+- ✅ Employee Dashboard
 - CRUD Products
-  - [✅] Create
-  - [✅] Read
-  - [✅] Update
-  - [✅] Delete
+  - [x] Create
+  - [x] Read
+  - [x] Update
+  - [x] Delete
 - CRUD Employee
-  - [✅] Create
-  - [✅] Read
-  - [✅] Update
-  - [✅] Delete
+  - [x] Create
+  - [x] Read
+  - [x] Update
+  - [x] Delete
